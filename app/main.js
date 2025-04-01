@@ -1,4 +1,5 @@
 import React, { useState, useReducer } from "react"
+import { useEffect } from "react"
 import ReactDOM from "react-dom/client"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useImmerReducer } from "use-immer"
@@ -22,13 +23,19 @@ import FlashMessages from "./components/FlashMessages"
 function Main() {
   const initialState = {
     loggedIn: Boolean(localStorage.getItem("complexappToken")),
-    flashMessages: []
+    flashMessages: [],
+    user: {
+      token: localStorage.getItem("complexappToken"),
+      username: localStorage.getItem("complexappUsername"),
+      avatar: localStorage.getItem("complexappAvatar")
+    }
   }
-
+/* draft is the copy of state */
   function ourReducer(draft, action) {
     switch (action.type) {
       case "login":
         draft.loggedIn = true
+        draft.user = action.data
         return
       case "logout":
         draft.loggedIn = false
@@ -45,6 +52,17 @@ dispatch called to make changes to the state
 
 */
   const [state, dispatch] = useImmerReducer(ourReducer, initialState)
+  useEffect(() => {
+    if (state.loggedIn) {
+      localStorage.setItem("complexappToken", state.user.token)
+      localStorage.setItem("complexappUsername", state.user.username)
+      localStorage.setItem("complexappAvatar", state.user.avatar)
+    } else {
+      localStorage.removeItem("complexappToken")
+      localStorage.removeItem("complexappUsername")
+      localStorage.removeItem("complexappAvatar")
+    }
+  }, [state.loggedIn])
 
   return (
     <StateContext.Provider value={state}>
