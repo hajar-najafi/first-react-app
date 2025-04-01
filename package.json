@@ -34,7 +34,9 @@
     "socket.io-client": "^4.7.4",
     "use-immer": "^0.9.0",
     "webpack": "^5.90.3",
-    "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.2"
+  },
+  "devDependencies": {
+    "webpack-cli": "^6.0.1"
   }
 }
