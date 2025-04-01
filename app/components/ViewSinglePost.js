@@ -3,7 +3,7 @@ import Page from "./Page"
 
 function ViewSinglePost() {
   return (
-    <Page title="fake">
+    <Page title="test">
       <div className="d-flex justify-content-between">
         <h2>Example Post Title</h2>
         <span className="pt-2">

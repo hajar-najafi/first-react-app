@@ -38,12 +38,21 @@ function Main() {
         return
     }
   }
+/*Think of it like this:
 
+💬 "Hey React, give me a state variable and a dispatch function to change it, using ourReducer logic and starting with initialState."
+dispatch called to make changes to the state
+
+*/
   const [state, dispatch] = useImmerReducer(ourReducer, initialState)
 
   return (
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
+        {/*  state and dispatch are being shared with the rest of the app using React Context.
+             other apps would use dispatch like this to change the state value
+             appDispatch({ type: "login" })
+      */}
         <BrowserRouter>
           <FlashMessages messages={state.flashMessages} />
           <Header />
