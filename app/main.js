@@ -19,6 +19,7 @@ import Terms from "./components/Terms"
 import CreatePost from "./components/CreatePost"
 import ViewSinglePost from "./components/ViewSinglePost"
 import FlashMessages from "./components/FlashMessages"
+import Profile from "./components/Profile"
 
 function Main() {
   const initialState = {
@@ -80,6 +81,7 @@ dispatch called to make changes to the state
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/about-us" element={<About />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/profile/:username/*" element={<Profile />} />
           </Routes>
           <Footer />
         </BrowserRouter>
