@@ -2,11 +2,11 @@ import React, { useEffect, useContext } from "react"
 import Page from "./Page"
 import StateContext from "../StateContext"
 
-
 function Home() {
   const appState = useContext(StateContext)
+
   return (
-    <Page title="my feed">
+    <Page title="Your Feed">
       <h2 className="text-center">
         Hello <strong>{appState.user.username}</strong>, your feed is empty.
       </h2>

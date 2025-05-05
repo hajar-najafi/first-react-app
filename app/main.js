@@ -1,8 +1,7 @@
-import React, { useState, useReducer } from "react"
-import { useEffect } from "react"
+import React, { useState, useReducer, useEffect } from "react"
 import ReactDOM from "react-dom/client"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useImmerReducer } from "use-immer"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Axios from "axios"
 Axios.defaults.baseURL = "http://localhost:8080"
 
@@ -31,7 +30,7 @@ function Main() {
       avatar: localStorage.getItem("complexappAvatar")
     }
   }
-/* draft is the copy of state */
+
   function ourReducer(draft, action) {
     switch (action.type) {
       case "login":
@@ -46,13 +45,9 @@ function Main() {
         return
     }
   }
-/*Think of it like this:
 
-💬 "Hey React, give me a state variable and a dispatch function to change it, using ourReducer logic and starting with initialState."
-dispatch called to make changes to the state
-
-*/
   const [state, dispatch] = useImmerReducer(ourReducer, initialState)
+
   useEffect(() => {
     if (state.loggedIn) {
       localStorage.setItem("complexappToken", state.user.token)
@@ -68,20 +63,16 @@ dispatch called to make changes to the state
   return (
     <StateContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
-        {/*  state and dispatch are being shared with the rest of the app using React Context.
-             other apps would use dispatch like this to change the state value
-             appDispatch({ type: "login" })
-      */}
         <BrowserRouter>
           <FlashMessages messages={state.flashMessages} />
           <Header />
           <Routes>
+            <Route path="/profile/:username/*" element={<Profile />} />
             <Route path="/" element={state.loggedIn ? <Home /> : <HomeGuest />} />
             <Route path="/post/:id" element={<ViewSinglePost />} />
             <Route path="/create-post" element={<CreatePost />} />
             <Route path="/about-us" element={<About />} />
             <Route path="/terms" element={<Terms />} />
-            <Route path="/profile/:username/*" element={<Profile />} />
           </Routes>
           <Footer />
         </BrowserRouter>

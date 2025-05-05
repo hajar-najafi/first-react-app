@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useContext } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 import Page from "./Page"
 import Axios from "axios"
 import DispatchContext from "../DispatchContext"
 import StateContext from "../StateContext"
-
 
 function CreatePost(props) {
   const [title, setTitle] = useState()
