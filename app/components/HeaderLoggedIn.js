@@ -23,11 +23,6 @@ function HeaderLoggedIn(props) {
         <i className="fas fa-search"></i>
       </a>
       <ReactTooltip place="bottom" id="search" className="custom-tooltip" />{" "}
-      <span data-tooltip-id="chat" data-tooltip-content="Chat" className="mr-2 header-chat-icon text-white">
-        <i className="fas fa-comment"></i>
-        <span className="chat-count-badge text-white"> </span>
-      </span>
-      <ReactTooltip place="bottom" id="chat" className="custom-tooltip" />{" "}
       <Link data-tooltip-id="profile" data-tooltip-content="My Profile" to={`/profile/${appState.user.username}`} className="mr-2">
         <img className="small-header-avatar" src={appState.user.avatar} />
       </Link>
